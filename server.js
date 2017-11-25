@@ -11,7 +11,7 @@ app.post('/sms', function(req, res) {
   console.log(req.body);
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
   var twiml = new responder();
-  twiml.message(req.body);
+  twiml.message(req.body.Body);
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
 });
