@@ -5,8 +5,8 @@ var twilio = require('twilio');
 var app = express();
 
 app.post('/sms', function(req, res) {
-  var twilio = require('twilio');
-  var twiml = new twilio.twiml.MessagingResponse();
+  var twilio = require('twilio').twiml.MessagingResponse;
+  var twiml = new MessagingResponse();
   twiml.message('The Robots are coming! Head for the hills!');
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
