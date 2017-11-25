@@ -1,9 +1,14 @@
-const driver_form = function(full name,vehicle type,vehicle capacity,phone number)
-{driverRef.set({
-    full name: "hihi singh ",
-    vehicle type: "bullock cart",
-    vehicle capacity: "3",
-    phone number: "9833384731",
-  },
-);}
+const dbRef = require('./firebase-setup.js')
+
+const driver_form = (tableName, full_name,vehicle_type,vehicle_capacity,phone_number) => {
+    let databaseReference = dbRef();
+    let driverRef = databaseReference.child("drivers");
+    driverRef.set({
+      full_name: full_name,
+      vehicle_type: vehicle_type,
+      vehicle_capacity: vehicle_capacity,
+      phone_number: phone_number,
+    },
+  );
+}
 module.exports = driver_form
