@@ -2,7 +2,7 @@ const send = require('./send.js');
 var http = require('http');
 var express = require('express');
 var twilio = require('twilio');
-
+var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.post('/sms', function(req, res) {

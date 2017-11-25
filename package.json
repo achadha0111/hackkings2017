@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/achadha0111/hackkings2017#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "http": "0.0.0",
     "twilio": "^3.10.0"
