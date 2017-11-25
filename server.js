@@ -1,4 +1,5 @@
 const send = require('./send.js');
+const parse = require('./parse.js');
 var http = require('http');
 var express = require('express');
 var twilio = require('twilio');
@@ -11,7 +12,8 @@ app.post('/sms', function(req, res) {
   console.log(req.body);
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
   var twiml = new responder();
-  twiml.message(req.body.Body);
+  const reply = parse(req.body);
+  twiml.message(reply);
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
 });
