@@ -4,11 +4,11 @@ var express = require('express');
 var twilio = require('twilio');
 
 var app = express();
-
+app.use(bodyParser.urlencoded({extended: false}));
 app.post('/sms', function(req, res) {
   var responder = require('twilio').twiml.MessagingResponse;
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  console.log(req);
+  console.log(req.body);
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
   var twiml = new responder();
   twiml.message(toParse);
