@@ -51,7 +51,7 @@ return new Promise(function(res, err) {
             {
               console.log("GOING IN");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-              res("We're processing your request"); // sfdfdffsdfds
+              res("We're processing your request!"); // sfdfdffsdfds
               return true;
             }
           }
@@ -66,7 +66,7 @@ return new Promise(function(res, err) {
                         {
                           console.log("YAAAAAAAAAAY");
                           updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-                          res("ok");
+                          res("We're processing your request!");
                           return true;
                         }
                       }
