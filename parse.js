@@ -91,10 +91,7 @@ return new Promise(function(res, err) {
                                   console.log(indexOf("YAAAAAAAAAAY"));
                                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
-                            } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
-                                updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                                res("ok");
-                          }
+                            }
                           setTimeout(function(){
                                 res(textToTranslate);
                           },2000);
@@ -105,12 +102,18 @@ return new Promise(function(res, err) {
 
 
           }
+          else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+             updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+             res("ok");
+           }
 
           // The user is present and hence the message is
             console.log("3");
             // Adds driver request to table
-
-          console.log(userPresentInDriverDb);
+            else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+               res("ok");
+          //console.log(userPresentInDriverDb);
 
       });
 
