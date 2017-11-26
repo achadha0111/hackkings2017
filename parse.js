@@ -97,8 +97,9 @@ return new Promise(function(res, err) {
 
           }
           else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+            console.log("GOING IN");
             res("ok");
-             updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+            updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
            }
            else {
              res(textToTranslate);
