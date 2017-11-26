@@ -67,7 +67,7 @@ const parse = (message) =>
                                 return true;
                             }
                         });
-                        console.log("userPresentInRiderDb");
+                        console.log(userPresentInRiderDb);
                         if (userPresentInRiderDb == false) {
                             //return translated(textToTranslate);
                               if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
