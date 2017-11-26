@@ -55,10 +55,10 @@ return new Promise(function(res, err) {
             if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1))
             {
               console.log("GOING IN");
-              return res("ok");
+              res("ok");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
-            return res("gibberish");
+            res("gibberish");
         };
       });
       console.log(userMessage.indexOf("Have") > -1);
@@ -73,9 +73,9 @@ return new Promise(function(res, err) {
                 {
                       console.log("YAAAAAAAAAAY");
                     updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                    return res("ok");
+                    res("ok");
                 }
-                return res("gibberish");
+                res("gibberish");
               }
             });
               //console.log(userPresentInRiderDb);
@@ -87,16 +87,16 @@ return new Promise(function(res, err) {
             {
               updateRiderTable(userMessage[2],message.From);
               textToTranslate = "Welcome, you are now registered as a passenger!";
-              return res("Welcome, you are now registered as a passenger!");
+              res("Welcome, you are now registered as a passenger!");
 
             }
             else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
               {
                 updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
                 //textToTranslate = "Welcome, you are now registered as a driver!";
-                return res("Welcome, you are now registered as a driver!");
+                res("Welcome, you are now registered as a driver!");
               }
-                    //return res(textToTranslate)
+                    //res(textToTranslate)
           // The user is present and hence the message is
             console.log("3");
             // Adds driver request to table
