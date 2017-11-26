@@ -81,16 +81,15 @@ return new Promise(function(res, err) {
                                 textToTranslate = "Welcome, you are now registered as a driver!";
                                 res("Welcome, you are now registered as a driver!");
                               }
-                            console.log("2");
-
+                            else
+                          {  res("It looks like you're not registered yet. " +
+                                "Register as a passenger by texting: " +
+                                "Register passenger, your name. " +
+                                "Register as a driver by texting: " +
+                                "Register driver, your name, vehicle type, number of seats available.");
+                              }
                             // return textToTranslate;
                       }
-                      else
-                      res("It looks like you're not registered yet. " +
-                          "Register as a passenger by texting: " +
-                          "Register passenger, your name. " +
-                          "Register as a driver by texting: " +
-                          "Register driver, your name, vehicle type, number of seats available.");
                   });
 
 
