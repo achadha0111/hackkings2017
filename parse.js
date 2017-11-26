@@ -101,7 +101,7 @@ return new Promise(function(res, err) {
             console.log("3");
             // Adds driver request to table
           //console.log(userPresentInDriverDb);
-
+          res(textToTranslate);
       });
 
   // Check if the user's number exists in the rider table
