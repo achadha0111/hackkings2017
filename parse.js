@@ -67,7 +67,7 @@ return new Promise(function(res, err) {
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
-                      ok = true;
+
                       //console.log(userMessage.indexOf("Need") > -1);
                       //console.log(userMessage.indexOf("seats") > -1);
                       // The user was not present in any and we'll ask them to register
@@ -91,6 +91,7 @@ return new Promise(function(res, err) {
                                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                             }
+                            ok = true;
                   });
 
 
