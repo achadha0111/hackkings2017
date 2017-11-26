@@ -66,6 +66,7 @@ return new Promise(function(res, err) {
               riderReference.once("value")
                 .then(function(snapshot) {
                     // Check if in rider db
+                        console.log(message.From);
                         if (snapshot.hasChild(message.From)) {
                             console.log("went into forst if");
                           if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
