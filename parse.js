@@ -110,9 +110,6 @@ return new Promise(function(res, err) {
           // The user is present and hence the message is
             console.log("3");
             // Adds driver request to table
-            else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
-               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-               res("ok");
           //console.log(userPresentInDriverDb);
 
       });
