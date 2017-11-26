@@ -104,7 +104,8 @@ return new Promise(function(res, err) {
                     console.log("3");
             }
         });
+});
+
+
 }
-
-
 module.exports = parse;
