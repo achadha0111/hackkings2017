@@ -87,14 +87,14 @@ return new Promise(function(res, err) {
             {
               updateRiderTable(userMessage[2],message.From);
               textToTranslate = "Welcome, you are now registered as a passenger!";
-              res("Welcome, you are now registered as a passenger!");
+              return res("Welcome, you are now registered as a passenger!");
 
             }
             else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
               {
                 updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
                 //textToTranslate = "Welcome, you are now registered as a driver!";
-                res("Welcome, you are now registered as a driver!");
+                return res("Welcome, you are now registered as a driver!");
               }
                     //res(textToTranslate)
           // The user is present and hence the message is
