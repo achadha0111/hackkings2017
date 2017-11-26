@@ -35,22 +35,17 @@ const parse = (message) =>
     const riderReference = databaseReference.child("/riders");
 
     let textToTranslate = "It looks like you're not registered yet. " +
-        "Register as a passenger by texting:" +
-        "Register passenger, your name." +
-        "Register as a driver by texting:" +
-        "Register driver, your name, vehicle type, number of seats available and vehicle registration plate.";
+        "Register as a passenger by texting: " +
+        "Register passenger, your name. " +
+        "Register as a driver by texting: " +
+        "Register driver, your name, vehicle type, number of seats available.";
 
     let userPresentInDriverDb = false;
     let userPresentInRiderDb = true;
 
     let userMessage = message.Body.split(" ");
 
-    // Adds driver request to table
-    if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
-        updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-    } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
-        updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-    }
+
     // Check if the user's number exists in the driver table
     driverReference.once("value")
         .then(function(snapshot) {
@@ -73,7 +68,18 @@ const parse = (message) =>
                         });
 
                         if (!userPresentInRiderDb) {
-                            return translated(textToTranslate);
+                            //return translated(textToTranslate);
+                              if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
+                              {
+                                function_rider(userMessage[2],message.From);
+                                return "Welcome, you are now registered as a passenger!";
+                              }
+                              else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
+                                {
+                                  function_rider(userMessage[2],userMessage[3],userMessage[4],message.From);
+                                  return "Welcome, you are now registered as a driver!";
+                                }
+                              return textToTranslate;
                         }
                     });
 
@@ -82,7 +88,12 @@ const parse = (message) =>
 
             // The user is present and hence the message is
             else {
-
+              // Adds driver request to table
+              if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+                  updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+              } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+                  updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+              }
             }
 
         });
@@ -95,4 +106,3 @@ const parse = (message) =>
 }
 
 module.exports = parse;
-
