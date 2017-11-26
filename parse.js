@@ -61,7 +61,7 @@ return new Promise(function(res, err) {
             console.log("dkjflskdfjlsdkjflsdkj~~~~~~");
               riderReference.once("value")
                   .then(function(snapshot) {
-                      // Check if in rider db 
+                      // Check if in rider db
                       if (snapshot.hasChild(message.From)) {
                         userPresentInDriverDb = true;
                       }
@@ -89,7 +89,7 @@ return new Promise(function(res, err) {
                               }
                             }
                             else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
-                                  console.log(indexOf("YAAAAAAAAAAY"));
+                                  console.log("YAAAAAAAAAAY");
                                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                             }
