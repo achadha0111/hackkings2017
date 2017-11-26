@@ -87,7 +87,7 @@ return new Promise(function(res, err) {
                                 return res("Welcome, you are now registered as a driver!");
                               }
                             }
-                            return res(textToTranslate);
+                            //return res(textToTranslate);
 
                   });
 
