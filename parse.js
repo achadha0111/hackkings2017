@@ -72,12 +72,12 @@ const parse = (message) =>
                             //return translated(textToTranslate);
                               if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
                               {
-                                function_rider(userMessage[2],message.From);
+                                updateRiderTable(userMessage[2],message.From);
                                 return "Welcome, you are now registered as a passenger!";
                               }
                               else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
                                 {
-                                  function_rider(userMessage[2],userMessage[3],userMessage[4],message.From);
+                                  updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
                                   return "Welcome, you are now registered as a driver!";
                                 }
                               console.log("2");
