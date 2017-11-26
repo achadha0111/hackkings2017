@@ -52,19 +52,17 @@ return new Promise(function(res, err) {
       .then(function(snapshot) {
         snapshot.forEach(function(riders) {
           let driver = riders.val();
-          if (driver.phone_number == message.From)  {
+          if (driver.phone_number == message.From)
+          {
             if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1))
             {
               console.log("GOING IN");
               res("ok");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+              return true;
             }
-
-          else {
-              res("GIBBERISH1");
-            }
-
-          }  else {
+          }
+         });
               riderReference.once("value")
                 .then(function(snapshot) {
                     // Check if in rider db
@@ -76,13 +74,12 @@ return new Promise(function(res, err) {
                           console.log("YAAAAAAAAAAY");
                           updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.from);
                           res("ok");
+                          return true;
                         }
-                        else
-                        {
-                           res("gibberish2");
-                         }
                       }
+
                    });
+                   res("1111gibberish");
                 });
                       //console.log(userPresentInRiderDb);
                       console.log(userMessage);
@@ -105,9 +102,8 @@ return new Promise(function(res, err) {
                             //res(textToTranslate)
                   // The user is present and hence the message is
                     console.log("3");
-            }
+
         });
-   });
 });
 
 }
