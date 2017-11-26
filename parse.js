@@ -34,7 +34,7 @@ return new Promise(function(res, err) {
 
   const driverReference = databaseReference.child("/drivers");
   const riderReference = databaseReference.child("/riders");
-
+  let ok = false;
   let textToTranslate = "It looks like you're not registered yet. " +
       "Register as a passenger by texting: " +
       "Register passenger, your name. " +
@@ -67,11 +67,9 @@ return new Promise(function(res, err) {
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
+                      ok = true;
                       //console.log(userMessage.indexOf("Need") > -1);
                       //console.log(userMessage.indexOf("seats") > -1);
-
-
-
                       // The user was not present in any and we'll ask them to register
                       if (userPresentInRiderDb == false) {
                           //return translated(textToTranslate);
@@ -97,7 +95,13 @@ return new Promise(function(res, err) {
 
 
           }
-          else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+          else{
+            while(!ok)
+            {
+              setTimeout(function(){},500);
+            }
+          }
+           if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
             console.log("GOING IN");
             res("ok");
             updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
