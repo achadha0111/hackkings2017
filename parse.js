@@ -41,7 +41,7 @@ const parse = (message) =>
         "Register driver, your name, vehicle type, number of seats available.";
 
     let userPresentInDriverDb = false;
-    let userPresentInRiderDb = true;
+    let userPresentInRiderDb = false;
     console.log(textToTranslate);
     let userMessage = message.Body.split(" ");
 
@@ -68,7 +68,7 @@ const parse = (message) =>
                             }
                         });
 
-                        if (!userPresentInRiderDb) {
+                        if (userPresentInRiderDb == false) {
                             //return translated(textToTranslate);
                               if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
                               {
