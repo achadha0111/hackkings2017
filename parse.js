@@ -58,7 +58,7 @@ return new Promise(function(res, err) {
             {
               console.log("GOING IN");
               res("ok");
-              updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+              updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.from);
               return true;
             }
           }
@@ -72,7 +72,7 @@ return new Promise(function(res, err) {
                         if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
                         {
                           console.log("YAAAAAAAAAAY");
-                          updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.from);
+                          updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.from);
                           res("ok");
                           return true;
                         }
