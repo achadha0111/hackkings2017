@@ -81,6 +81,7 @@ return new Promise(function(res, err) {
                                 //textToTranslate = "Welcome, you are now registered as a driver!";
                                 res("Welcome, you are now registered as a driver!");
                               }
+                            }
                   });
 
 
