@@ -57,8 +57,8 @@ return new Promise(function(res, err) {
             if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1))
             {
               console.log("GOING IN");
-              res("ok");
-              updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
+              updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
+              res("ok"); // sfdfdffsdfds
               return true;
             }
           }
@@ -72,7 +72,7 @@ return new Promise(function(res, err) {
                         if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
                         {
                           console.log("YAAAAAAAAAAY");
-                          updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
+                          updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
                           res("ok");
                           return true;
                         }
