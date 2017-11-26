@@ -88,7 +88,6 @@ const parse = (message) =>
 
 
             }
-            console.log(userPresentInDriverDb);
 
             // The user is present and hence the message is
             else {
@@ -100,6 +99,7 @@ const parse = (message) =>
                   updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
               }
             }
+            console.log(userPresentInDriverDb);
 
         });
 
