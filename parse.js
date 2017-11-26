@@ -50,19 +50,21 @@ return new Promise(function(res, err) {
   // Check if the user's number exists in the driver table
   driverReference.once("value")
       .then(function(snapshot) {
-        if (snapshot.hasChild(message.From)) {
-            userPresentInDriverDb = true;
+        snapshot.forEach(function(riders) {
+          let driver = riders.val();
+          if (driver.phone_number == message.From)  {
             if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1))
             {
               console.log("GOING IN");
               res("ok");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
-            else {
+
+          else {
               res("GIBBERISH1");
             }
 
-          }   else {
+          }  else {
               riderReference.once("value")
                 .then(function(snapshot) {
                     // Check if in rider db
@@ -72,7 +74,7 @@ return new Promise(function(res, err) {
                         if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
                         {
                           console.log("YAAAAAAAAAAY");
-                          updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                          updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.from);
                           res("ok");
                         }
                         else
@@ -80,11 +82,8 @@ return new Promise(function(res, err) {
                            res("gibberish2");
                          }
                       }
-                    });
-
-
-
-                      });
+                   });
+                });
                       //console.log(userPresentInRiderDb);
                       console.log(userMessage);
                       //console.log(userMessage.indexOf("Need") > -1);
@@ -108,8 +107,8 @@ return new Promise(function(res, err) {
                     console.log("3");
             }
         });
+   });
 });
-
 
 }
 module.exports = parse;
