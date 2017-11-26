@@ -69,6 +69,7 @@ return new Promise(function(res, err) {
                       console.log(userMessage);
                       //console.log(userMessage.indexOf("Need") > -1);
                       //console.log(userMessage.indexOf("seats") > -1);
+
                       // The user was not present in any and we'll ask them to register
                       if (userPresentInRiderDb == false) {
                           //return translated(textToTranslate);
@@ -76,31 +77,35 @@ return new Promise(function(res, err) {
                             {
                               updateRiderTable(userMessage[2],message.From);
                               textToTranslate = "Welcome, you are now registered as a passenger!";
-                              res("Welcome, you are now registered as a passenger!");
+                              return res("Welcome, you are now registered as a passenger!");
+
                             }
                             else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
                               {
                                 updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
                                 //textToTranslate = "Welcome, you are now registered as a driver!";
-                                res("Welcome, you are now registered as a driver!");
+                                return res("Welcome, you are now registered as a driver!");
                               }
                             }
-                            else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
-                                  console.log("YAAAAAAAAAAY");
-                                updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                                res("ok");
-                            }
+
                   });
 
 
           }
+
+          else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+                console.log("YAAAAAAAAAAY");
+              updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+              return res("ok");
+          }
+
           else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
             console.log("GOING IN");
-            res("ok");
+            return res("ok");
             updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
            }
            else {
-             res(textToTranslate);
+            return  res(textToTranslate);
            }
 
           // The user is present and hence the message is
