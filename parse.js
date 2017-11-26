@@ -102,7 +102,7 @@ return new Promise(function(res, err) {
                        "Register as a passenger by texting: " +
                        "Register passenger, your name. " +
                        "Register as a driver by texting: " +
-                       "Register driver, your name, vehicle type, number of seats available.";);
+                       "Register driver, your name, vehicle type, number of seats available.");
                 });
                       //console.log(userPresentInRiderDb);
                       console.log(userMessage);
