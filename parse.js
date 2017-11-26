@@ -66,9 +66,9 @@ return new Promise(function(res, err) {
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
-                      console.log(userMessage.indexOf("Need") > -1));
+                      console.log(userMessage.indexOf("Need") > -1);
 
-                      
+
 
                       // The user was not present in any and we'll ask them to register
                       if (userPresentInRiderDb == false) {
