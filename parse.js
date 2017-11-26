@@ -78,7 +78,7 @@ return new Promise(function(res, err) {
                 return res("gibberish");
               }
             });
-              console.log(userPresentInRiderDb);
+              //console.log(userPresentInRiderDb);
               console.log(userMessage);
               //console.log(userMessage.indexOf("Need") > -1);
               //console.log(userMessage.indexOf("seats") > -1);
@@ -97,7 +97,6 @@ return new Promise(function(res, err) {
                 return res("Welcome, you are now registered as a driver!");
               }
                     //return res(textToTranslate)
-
           // The user is present and hence the message is
             console.log("3");
             // Adds driver request to table
