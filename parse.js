@@ -112,7 +112,7 @@ return new Promise(function(res, err) {
                     if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
                     {
                       updateRiderTable(userMessage[2],message.From);
-                      textToTranslate = "Welcome, you are now registered as a passenger!";
+                      //textToTranslate = "Welcome, you are now registered as a passenger!";
                       return res("Welcome, you are now registered as a passenger!");
 
                     }
