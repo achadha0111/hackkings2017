@@ -12,10 +12,12 @@ app.post('/sms', function(req, res) {
   console.log(req.body);
   console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
   var twiml = new responder();
-  const reply = parse(req.body);
-  twiml.message(reply);
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
+  parse(req.body).then((reply, err) => {
+    twiml.message(reply);
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+  });
+
 });
 
 app.get('/sms', function(req, res) {

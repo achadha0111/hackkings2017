@@ -29,86 +29,91 @@ const dbRef = require('./firebase-setup');
 const parse = (message) =>
 {
 
-    const databaseReference = dbRef();
+return new Promise(res, err) {
+  const databaseReference = dbRef();
 
-    const driverReference = databaseReference.child("/drivers");
-    const riderReference = databaseReference.child("/riders");
+  const driverReference = databaseReference.child("/drivers");
+  const riderReference = databaseReference.child("/riders");
 
-    let textToTranslate = "It looks like you're not registered yet. " +
-        "Register as a passenger by texting: " +
-        "Register passenger, your name. " +
-        "Register as a driver by texting: " +
-        "Register driver, your name, vehicle type, number of seats available.";
+  let textToTranslate = "It looks like you're not registered yet. " +
+      "Register as a passenger by texting: " +
+      "Register passenger, your name. " +
+      "Register as a driver by texting: " +
+      "Register driver, your name, vehicle type, number of seats available.";
 
-    let userPresentInDriverDb = false;
-    let userPresentInRiderDb = false;
-    console.log(textToTranslate);
-    let userMessage = message.Body.split(" ");
-
-
-    // Check if the user's number exists in the driver table
-    driverReference.once("value")
-        .then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                if (childSnapshot.val().number === message.From) {
-                    userPresentInDriverDb = true;
-                    return true;
-                }
-            });
-
-            // The user is not in the db and we will send them a translated message to register
-            if (!userPresentInDriverDb) {
-                riderReference.once("value")
-                    .then(function(snapshot) {
-                        snapshot.forEach(function(childSnapshot) {
-                            if (childSnapshot.val().number === message.From) {
-                                userPresentInRiderDb = true;
-                                console.log("1");
-                                return true;
-                            }
-                        });
-                        console.log(userPresentInRiderDb);
-                        if (userPresentInRiderDb == false) {
-                            //return translated(textToTranslate);
-                              if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
-                              {
-                                updateRiderTable(userMessage[2],message.From);
-                                return "Welcome, you are now registered as a passenger!";
-                              }
-                              else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
-                                {
-                                  updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
-                                  textToTranslate = "Welcome, you are now registered as a driver!";
-                                  return "Welcome, you are now registered as a driver!";
-                                }
-                              console.log("2");
-
-                              return textToTranslate;
-                        }
-                    });
+  let userPresentInDriverDb = false;
+  let userPresentInRiderDb = false;
+  console.log(textToTranslate);
+  let userMessage = message.Body.split(" ");
 
 
-            }
-
-            // The user is present and hence the message is
-            else {
-              console.log("3");
-              // Adds driver request to table
-              if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
-                  updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-              } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
-                  updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+  // Check if the user's number exists in the driver table
+  driverReference.once("value")
+      .then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+              if (childSnapshot.val().number === message.From) {
+                  userPresentInDriverDb = true;
+                  return true;
               }
+          });
+
+          // The user is not in the db and we will send them a translated message to register
+          if (!userPresentInDriverDb) {
+            console.log("dkjflskdfjlsdkjflsdkj~~~~~~");
+              riderReference.once("value")
+                  .then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          if (childSnapshot.val().number === message.From) {
+                              userPresentInRiderDb = true;
+                              console.log("1");
+                              return true;
+                          }
+                      });
+                      console.log(userPresentInRiderDb);
+                      if (userPresentInRiderDb == false) {
+                          //return translated(textToTranslate);
+                            if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
+                            {
+                              updateRiderTable(userMessage[2],message.From);
+                              textToTranslate = "Welcome, you are now registered as a passenger!";
+                              res("Welcome, you are now registered as a passenger!");
+                            }
+                            else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
+                              {
+                                updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
+                                textToTranslate = "Welcome, you are now registered as a driver!";
+                                res("Welcome, you are now registered as a driver!");
+                              }
+                            console.log("2");
+
+                            // return textToTranslate;
+                      }
+                  });
+
+
+          }
+
+          // The user is present and hence the message is
+          else {
+            console.log("3");
+            // Adds driver request to table
+            if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+                updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+            } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+                updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
-            console.log(userPresentInDriverDb);
+          }
+          console.log(userPresentInDriverDb);
 
-        });
+      });
 
-    // Check if the user's number exists in the rider table
+  // Check if the user's number exists in the rider table
 
-return textToTranslate;
+res(textToTranslate);
 
 
 }
+}
+
 
 module.exports = parse;
