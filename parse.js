@@ -101,8 +101,10 @@ return new Promise(function(res, err) {
             // Adds driver request to table
             if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                res("ok");
             } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                res("ok");
             }
           }
           console.log(userPresentInDriverDb);
