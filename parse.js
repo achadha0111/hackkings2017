@@ -51,7 +51,7 @@ return new Promise(function(res, err) {
   driverReference.once("value")
       .then(function(snapshot) {
         if (snapshot.hasChild(Message.from)) {
-            userPresentInDriverDb = true; 
+            userPresentInDriverDb = true;
         };
       });
 
@@ -112,8 +112,6 @@ return new Promise(function(res, err) {
 
   // Check if the user's number exists in the rider table
 
-
-});
 }
 
 
