@@ -75,13 +75,13 @@ return new Promise(function(res, err) {
                           updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                           res("ok");
                         }
-
+                        else
+                        {
+                           res("gibberish2");
+                         }
                       }
                     });
-                       else
-                       {
-                          res("gibberish2");
-                        }
+
 
 
                       });
