@@ -88,6 +88,12 @@ return new Promise(function(res, err) {
 
                             // return textToTranslate;
                       }
+                      else
+                      res("It looks like you're not registered yet. " +
+                          "Register as a passenger by texting: " +
+                          "Register passenger, your name. " +
+                          "Register as a driver by texting: " +
+                          "Register driver, your name, vehicle type, number of seats available.");
                   });
 
 
@@ -108,8 +114,6 @@ return new Promise(function(res, err) {
       });
 
   // Check if the user's number exists in the rider table
-
-res(textToTranslate);
 
 
 });
