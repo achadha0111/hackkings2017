@@ -67,6 +67,7 @@ return new Promise(function(res, err) {
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
                       console.log(userMessage.indexOf("Need") > -1);
+                      console.log(userMessage.indexOf("seats") > -1);
 
 
 
@@ -94,7 +95,7 @@ return new Promise(function(res, err) {
                                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                           }
-                          res(textToTranslate);
+                          
 
                   });
 
@@ -106,11 +107,11 @@ return new Promise(function(res, err) {
             // Adds driver request to table
 
           console.log(userPresentInDriverDb);
-
+          res(textToTranslate);
       });
 
   // Check if the user's number exists in the rider table
-res(textToTranslate);
+
 }
 
 
