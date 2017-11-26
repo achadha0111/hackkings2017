@@ -1,5 +1,4 @@
 const dbRef = require('./firebase-setup.js')
-
 const rider_req = (origin,destination,vehicle_capacity, phone_number) => {
     let databaseReference = dbRef();
     let rreqRef = databaseReference.child("Request_for_rider");
