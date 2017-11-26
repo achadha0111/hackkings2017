@@ -54,7 +54,8 @@ return new Promise(function(res, err) {
             userPresentInDriverDb = true;
         };
       });
-
+      console.log(userMessage.indexOf("Have") > -1);
+      console.log(userMessage.indexOf("seats") > -1);
           // The user is not in the db and we will send them a translated message to register
           if (!userPresentInDriverDb) {
             console.log("dkjflskdfjlsdkjflsdkj~~~~~~");
@@ -66,8 +67,8 @@ return new Promise(function(res, err) {
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
-                      console.log(userMessage.indexOf("Need") > -1);
-                      console.log(userMessage.indexOf("seats") > -1);
+                      //console.log(userMessage.indexOf("Need") > -1);
+                      //console.log(userMessage.indexOf("seats") > -1);
 
 
 
