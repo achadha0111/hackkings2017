@@ -1,6 +1,6 @@
 const dbRef = require('./firebase-setup.js')
 
-const driver_form = (tableName, full_name,vehicle_type,vehicle_capacity,phone_number) => {
+const driver_form = (full_name,vehicle_type,vehicle_capacity,phone_number) => {
     let databaseReference = dbRef();
     let driverRef = databaseReference.child("drivers");
     driverRef.set({
