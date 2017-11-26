@@ -78,18 +78,9 @@ return new Promise(function(res, err) {
                             else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
                               {
                                 updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
-                                textToTranslate = "Welcome, you are now registered as a driver!";
+                                //textToTranslate = "Welcome, you are now registered as a driver!";
                                 res("Welcome, you are now registered as a driver!");
                               }
-                            else
-                          {  res("It looks like you're not registered yet. " +
-                                "Register as a passenger by texting: " +
-                                "Register passenger, your name. " +
-                                "Register as a driver by texting: " +
-                                "Register driver, your name, vehicle type, number of seats available.");
-                              }
-                            // return textToTranslate;
-                      }
                   });
 
 
@@ -112,7 +103,7 @@ return new Promise(function(res, err) {
       });
 
   // Check if the user's number exists in the rider table
-
+res(textToTranslate);
 }
 
 
