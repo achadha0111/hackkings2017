@@ -82,14 +82,16 @@ return new Promise(function(res, err) {
                                 res("Welcome, you are now registered as a driver!");
                               }
                             }
+                            console.log(userMessage);
+                            console.log(indexOf("Need"));
                             else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+
                                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                             } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
                                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                           }
-                          else
                           res(textToTranslate);
 
                   });
