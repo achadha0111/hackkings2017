@@ -42,7 +42,7 @@ const parse = (message) =>
 
     let userPresentInDriverDb = false;
     let userPresentInRiderDb = true;
-
+    console.log(textToTranslate);
     let userMessage = message.Body.split(" ");
 
 
@@ -63,6 +63,7 @@ const parse = (message) =>
                         snapshot.forEach(function(childSnapshot) {
                             if (childSnapshot.val().number === message.From) {
                                 userPresentInRiderDb = true;
+                                console.log("1");
                                 return true;
                             }
                         });
@@ -79,6 +80,8 @@ const parse = (message) =>
                                   function_rider(userMessage[2],userMessage[3],userMessage[4],message.From);
                                   return "Welcome, you are now registered as a driver!";
                                 }
+                              console.log("2");
+
                               return textToTranslate;
                         }
                     });
@@ -88,6 +91,7 @@ const parse = (message) =>
 
             // The user is present and hence the message is
             else {
+              console.log("3");
               // Adds driver request to table
               if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
                   updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
