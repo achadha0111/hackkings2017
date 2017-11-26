@@ -58,6 +58,9 @@ return new Promise(function(res, err) {
               res("ok");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
+            else {
+              res("gibberish");
+            }
 
           }  else {
               riderReference.once("value")
@@ -71,12 +74,12 @@ return new Promise(function(res, err) {
                             updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                             res("ok");
                           }
-                          
+
                         } else {
                           res("gibberish");
-                        }      
-                        
-                        
+                        }
+
+
                       });
                       //console.log(userPresentInRiderDb);
                       console.log(userMessage);
