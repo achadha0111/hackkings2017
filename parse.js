@@ -95,7 +95,10 @@ return new Promise(function(res, err) {
                                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                           }
-                          res(textToTranslate);
+                          setTimeout(function(){
+                                res(textToTranslate);
+                          },2000);
+
 
 
                   });
