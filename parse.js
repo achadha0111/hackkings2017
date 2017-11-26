@@ -29,7 +29,7 @@ const dbRef = require('./firebase-setup');
 const parse = (message) =>
 {
 
-return new Promise(res, err) {
+return new Promise(function(res, err) {
   const databaseReference = dbRef();
 
   const driverReference = databaseReference.child("/drivers");
@@ -112,7 +112,7 @@ return new Promise(res, err) {
 res(textToTranslate);
 
 
-}
+});
 }
 
 
