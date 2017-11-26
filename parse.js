@@ -82,6 +82,14 @@ return new Promise(function(res, err) {
                                 res("Welcome, you are now registered as a driver!");
                               }
                             }
+                            else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+                                updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                                res("ok");
+                            } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+                                updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                                res("ok");
+                          }
+                          res(textToTranslate);
 
                   });
 
@@ -91,14 +99,7 @@ return new Promise(function(res, err) {
           // The user is present and hence the message is
             console.log("3");
             // Adds driver request to table
-            if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
-                updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                res("ok");
-            } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
-                updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                res("ok");
 
-          }
           console.log(userPresentInDriverDb);
 
       });
