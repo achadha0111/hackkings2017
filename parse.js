@@ -59,7 +59,7 @@ return new Promise(function(res, err) {
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
             else {
-              res("gibberish");
+              res("GIBBERISH1");
             }
 
           }   else {
@@ -67,7 +67,7 @@ return new Promise(function(res, err) {
                 .then(function(snapshot) {
                     // Check if in rider db
                         if (snapshot.hasChild(message.From)) {
-
+                            console.log("went into forst if");
                           if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
                           {
                             console.log("YAAAAAAAAAAY");
@@ -76,7 +76,7 @@ return new Promise(function(res, err) {
                           }
 
                         } else {
-                          res("gibberish");
+                          res("gibberish2");
                         }
 
 
