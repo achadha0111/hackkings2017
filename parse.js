@@ -25,7 +25,7 @@ const updateRiderTable = require('./function_rider.js');
 const updateRiderRequestTable = require('./function_rider_request.js');
 const updateDriverRequestTable = require('./function_driver_request.js');
 const dbRef = require('./firebase-setup');
-const trans = require('google-translate-api');
+
 const parse = (message) =>
 {
 
@@ -35,10 +35,8 @@ return new Promise(function(res, err) {
   const driverReference = databaseReference.child("/drivers");
   const riderReference = databaseReference.child("/riders");
 
-
   // let userPresentInDriverDb = false;
   // let userPresentInRiderDb = false;
-  //console.log(textToTranslate);
   let userMessage = message.Body.split(" ");
 
 
@@ -53,19 +51,7 @@ return new Promise(function(res, err) {
             {
               console.log("GOING IN");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-              //res("We're processing your reques"); // sfdfdffsdfds
-              let text = "We're processing your request!"
-              trans(text, {to: 'hi'}).then(res => {
-                  console.log(res.text);
-                  //=> I speak English
-                  console.log(res.from.language.iso);
-                  result = res.from.language.iso;
-                  //=> nl
-                  res(text + result);
-              }).catch(err => {
-                  console.error(err);
-              });
-
+              res("We're processing your request"); // sfdfdffsdfds
               return true;
             }
           }
@@ -80,24 +66,13 @@ return new Promise(function(res, err) {
                         {
                           console.log("YAAAAAAAAAAY");
                           updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-                          //res("ok");
-                          let text = "We're processing your request!"
-                          trans(text, {to: 'hi'}).then(res => {
-                              console.log(res.text);
-                              //=> I speak English
-                              console.log(res.from.language.iso);
-                              result = res.from.language.iso;
-                              //=> nl
-                              res(result);
-                          }).catch(err => {
-                              console.error(err);
-                          });
+                          res("ok");
                           return true;
                         }
                       }
 
                    });
-                   res("I can't quite get that. Are you reistered yet? " +
+                   res("It looks like you're not registered yet. " +
                        "Register as a passenger by texting: " +
                        "Register passenger, your name. " +
                        "Register as a driver by texting: " +
@@ -111,7 +86,6 @@ return new Promise(function(res, err) {
                     if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
                     {
                       updateRiderTable(userMessage[2],message.From);
-                      //textToTranslate = "Welcome, you are now registered as a passenger!";
                       return res("Welcome, you are now registered as a passenger!");
 
                     }
