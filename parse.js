@@ -78,6 +78,7 @@ const parse = (message) =>
                               else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
                                 {
                                   updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
+                                  textToTranslate = "Welcome, you are now registered as a driver!";
                                   return "Welcome, you are now registered as a driver!";
                                 }
                               console.log("2");
@@ -105,7 +106,7 @@ const parse = (message) =>
 
     // Check if the user's number exists in the rider table
 
-return "kljvlxk";
+return textToTranslate;
 
 
 }
