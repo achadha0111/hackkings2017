@@ -63,7 +63,7 @@ return new Promise(function(res, err) {
                   .then(function(snapshot) {
                       // Check if in rider db
                       if (snapshot.hasChild(message.From)) {
-                        userPresentInDriverDb = true;
+                        userPresentInRiderDb = true;
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
@@ -87,6 +87,7 @@ return new Promise(function(res, err) {
                                 return res("Welcome, you are now registered as a driver!");
                               }
                             }
+                            return res(textToTranslate);
 
                   });
 
