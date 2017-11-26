@@ -58,54 +58,49 @@ return new Promise(function(res, err) {
               res("ok");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
             }
-            res("gibberish");
-        };
-      });
-      console.log(userMessage.indexOf("Have") > -1);
-      console.log(userMessage.indexOf("seats") > -1);
-          // The user is not in the db and we will send them a translated message to register
-      riderReference.once("value")
-          .then(function(snapshot) {
-              // Check if in rider db
-              if (snapshot.hasChild(message.From)) {
-                userPresentInRiderDb = true;
-                if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
-                {
-                      console.log("YAAAAAAAAAAY");
-                    updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                    res("ok");
-                }
-                res("gibberish");
-              }
-            });
-              //console.log(userPresentInRiderDb);
-              console.log(userMessage);
-              //console.log(userMessage.indexOf("Need") > -1);
-              //console.log(userMessage.indexOf("seats") > -1);
-              // The user was not present in any and we'll ask them to register
-            if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
-            {
-              updateRiderTable(userMessage[2],message.From);
-              textToTranslate = "Welcome, you are now registered as a passenger!";
-              return res("Welcome, you are now registered as a passenger!");
 
+          }  else {
+              riderReference.once("value")
+                .then(function(snapshot) {
+                    // Check if in rider db
+                        if (snapshot.hasChild(message.From)) {
+
+                          if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
+                          {
+                            console.log("YAAAAAAAAAAY");
+                            updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                            res("ok");
+                          }
+                          
+                        } else {
+                          res("gibberish");
+                        }      
+                        
+                        
+                      });
+                      //console.log(userPresentInRiderDb);
+                      console.log(userMessage);
+                      //console.log(userMessage.indexOf("Need") > -1);
+                      //console.log(userMessage.indexOf("seats") > -1);
+                      // The user was not present in any and we'll ask them to register
+                    if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
+                    {
+                      updateRiderTable(userMessage[2],message.From);
+                      textToTranslate = "Welcome, you are now registered as a passenger!";
+                      return res("Welcome, you are now registered as a passenger!");
+
+                    }
+                    else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
+                      {
+                        updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
+                        //textToTranslate = "Welcome, you are now registered as a driver!";
+                        return res("Welcome, you are now registered as a driver!");
+                      }
+                            //res(textToTranslate)
+                  // The user is present and hence the message is
+                    console.log("3");
             }
-            else  if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("driver") > -1))
-              {
-                updateDriverTable(userMessage[2],userMessage[3],userMessage[4],message.From);
-                //textToTranslate = "Welcome, you are now registered as a driver!";
-                return res("Welcome, you are now registered as a driver!");
-              }
-                    //res(textToTranslate)
-          // The user is present and hence the message is
-            console.log("3");
-            // Adds driver request to table
-          //console.log(userPresentInDriverDb);
-          res(textToTranslate);
-      });
-
-  // Check if the user's number exists in the rider table
-
+        });
 }
 
 
