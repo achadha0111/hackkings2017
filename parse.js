@@ -66,6 +66,7 @@ return new Promise(function(res, err) {
                       }
                       console.log(userPresentInRiderDb);
                       console.log(userMessage);
+                      console.log(userMessage.indexOf("Need") > -1));
 
                       // The user was not present in any and we'll ask them to register
                       if (userPresentInRiderDb == false) {
@@ -83,7 +84,6 @@ return new Promise(function(res, err) {
                                 res("Welcome, you are now registered as a driver!");
                               }
                             }
-
                             else if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
                                   console.log(indexOf("YAAAAAAAAAAY"));
                                 updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
