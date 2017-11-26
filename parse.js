@@ -66,18 +66,20 @@ return new Promise(function(res, err) {
               riderReference.once("value")
                 .then(function(snapshot) {
                     // Check if in rider db
-                        console.log(message.From);
-                        console.log(snapshot.child);
-                        if (snapshot.hasChild(message.From)) {
-                            console.log("went into forst if");
-                          if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
-                          {
-                            console.log("YAAAAAAAAAAY");
-                            updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
-                            res("ok");
-                          }
+                    snapshot.forEach(function(riders) {
+                      let rider = riders.val();
+                      if (rider.phone_number == message.From) {
+                        if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1))
+                        {
+                          console.log("YAAAAAAAAAAY");
+                          updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+                          res("ok");
+                        }
 
-                        } else {
+                      }
+                    });
+                       else
+                       {
                           res("gibberish2");
                         }
 
