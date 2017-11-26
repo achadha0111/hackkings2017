@@ -50,26 +50,23 @@ return new Promise(function(res, err) {
   // Check if the user's number exists in the driver table
   driverReference.once("value")
       .then(function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-              if (childSnapshot.val().number === message.From) {
-                  userPresentInDriverDb = true;
-                  return true;
-              }
-          });
+        if (snapshot.hasChild(Message.from)) {
+            userPresentInDriverDb = true; 
+        };
+      });
 
           // The user is not in the db and we will send them a translated message to register
           if (!userPresentInDriverDb) {
             console.log("dkjflskdfjlsdkjflsdkj~~~~~~");
               riderReference.once("value")
                   .then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                          if (childSnapshot.val().number === message.From) {
-                              userPresentInRiderDb = true;
-                              console.log("1");
-                              return true;
-                          }
-                      });
+                      // Check if in rider db
+                      if (snapshot.hasChild(Message.from)) {
+                        userPresentInDriverDb = true;
+                      }
                       console.log(userPresentInRiderDb);
+
+                      // The user was not present in any and we'll ask them to register
                       if (userPresentInRiderDb == false) {
                           //return translated(textToTranslate);
                             if ((userMessage.indexOf("Register") > -1) && (userMessage.indexOf("passenger") > -1))
