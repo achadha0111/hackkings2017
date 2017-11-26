@@ -40,29 +40,57 @@ const parse = (message) =>
         "Register as a driver by texting:" +
         "Register driver, your name, vehicle type, number of seats available and vehicle registration plate.";
 
+    let userPresentInDriverDb = false;
+    let userPresentInRiderDb = true;
+
+    let userMessage = message.Body.split(" ");
+
+    // Adds driver request to table
+    if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
+        updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+    } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
+        updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
+    }
+    // Check if the user's number exists in the driver table
     driverReference.once("value")
         .then(function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 if (childSnapshot.val().number === message.From) {
+                    userPresentInDriverDb = true;
                     return true;
                 }
             });
 
-            return translated(textToTranslate);
+            // The user is not in the db and we will send them a translated message to register
+            if (!userPresentInDriverDb) {
+                riderReference.once("value")
+                    .then(function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                            if (childSnapshot.val().number === message.From) {
+                                userPresentInRiderDb = true;
+                                return true;
+                            }
+                        });
+
+                        if (!userPresentInRiderDb) {
+                            return translated(textToTranslate);
+                        }
+                    });
+
+
+            }
+
+            // The user is present and hence the message is
+            else {
+
+            }
+
         });
 
-    riderReference.once("value")
-        .then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                if (childSnapshot.val().number === message.From) {
-                    return true;
-                }
-            });
+    // Check if the user's number exists in the rider table
 
-            return translated(textToTranslate);
-        });
-    if (databaseReference.child("drivers"))
-        let userMessage = message.split(" ");
+
+
 
 }
 
