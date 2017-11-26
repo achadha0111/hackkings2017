@@ -61,7 +61,7 @@ return new Promise(function(res, err) {
             console.log("dkjflskdfjlsdkjflsdkj~~~~~~");
               riderReference.once("value")
                   .then(function(snapshot) {
-                      // Check if in rider db
+                      // Check if in rider db 
                       if (snapshot.hasChild(message.From)) {
                         userPresentInDriverDb = true;
                       }
