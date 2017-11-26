@@ -50,7 +50,7 @@ return new Promise(function(res, err) {
   // Check if the user's number exists in the driver table
   driverReference.once("value")
       .then(function(snapshot) {
-        if (snapshot.hasChild(Message.from)) {
+        if (snapshot.hasChild(message.From)) {
             userPresentInDriverDb = true;
         };
       });
@@ -61,7 +61,7 @@ return new Promise(function(res, err) {
               riderReference.once("value")
                   .then(function(snapshot) {
                       // Check if in rider db
-                      if (snapshot.hasChild(Message.from)) {
+                      if (snapshot.hasChild(message.From)) {
                         userPresentInDriverDb = true;
                       }
                       console.log(userPresentInRiderDb);
