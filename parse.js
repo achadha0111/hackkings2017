@@ -88,6 +88,7 @@ const parse = (message) =>
 
 
             }
+            console.log(userPresentInDriverDb);
 
             // The user is present and hence the message is
             else {
@@ -104,7 +105,7 @@ const parse = (message) =>
 
     // Check if the user's number exists in the rider table
 
-
+return "kljvlxk";
 
 
 }
