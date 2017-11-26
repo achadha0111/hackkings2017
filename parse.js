@@ -62,7 +62,7 @@ return new Promise(function(res, err) {
               res("gibberish");
             }
 
-          }  else {
+          }   else {
               riderReference.once("value")
                 .then(function(snapshot) {
                     // Check if in rider db
