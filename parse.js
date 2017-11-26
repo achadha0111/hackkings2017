@@ -82,13 +82,13 @@ return new Promise(function(res, err) {
                                 res("Welcome, you are now registered as a driver!");
                               }
                             }
+
                   });
 
 
           }
 
           // The user is present and hence the message is
-          else {
             console.log("3");
             // Adds driver request to table
             if ((userMessage.indexOf("Need") > -1) && (userMessage.indexOf("seats") > -1)) {
@@ -97,7 +97,7 @@ return new Promise(function(res, err) {
             } else if ((userMessage.indexOf("Have") > -1) && (userMessage.indexOf("seats") > -1)) {
                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                 res("ok");
-            }
+
           }
           console.log(userPresentInDriverDb);
 
