@@ -35,11 +35,10 @@ return new Promise(function(res, err) {
   const driverReference = databaseReference.child("/drivers");
   const riderReference = databaseReference.child("/riders");
 
-  let textToTranslate =
 
   // let userPresentInDriverDb = false;
   // let userPresentInRiderDb = false;
-  console.log(textToTranslate);
+  //console.log(textToTranslate);
   let userMessage = message.Body.split(" ");
 
 
