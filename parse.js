@@ -25,7 +25,7 @@ const updateRiderTable = require('./function_rider.js');
 const updateRiderRequestTable = require('./function_rider_request.js');
 const updateDriverRequestTable = require('./function_driver_request.js');
 const dbRef = require('./firebase-setup');
-
+const trans = require('google-translate-api');
 const parse = (message) =>
 {
 
@@ -35,11 +35,7 @@ return new Promise(function(res, err) {
   const driverReference = databaseReference.child("/drivers");
   const riderReference = databaseReference.child("/riders");
 
-  let textToTranslate = "It looks like you're not registered yet. " +
-      "Register as a passenger by texting: " +
-      "Register passenger, your name. " +
-      "Register as a driver by texting: " +
-      "Register driver, your name, vehicle type, number of seats available.";
+  let textToTranslate =
 
   // let userPresentInDriverDb = false;
   // let userPresentInRiderDb = false;
@@ -58,7 +54,19 @@ return new Promise(function(res, err) {
             {
               console.log("GOING IN");
               updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-              res("ok"); // sfdfdffsdfds
+              //res("We're processing your reques"); // sfdfdffsdfds
+              let text = "We're processing your request!"
+              trans(text, {to: 'hi'}).then(res => {
+                  console.log(res.text);
+                  //=> I speak English
+                  console.log(res.from.language.iso);
+                  result = res.from.language.iso;
+                  //=> nl
+                  res(text + result);
+              }).catch(err => {
+                  console.error(err);
+              });
+
               return true;
             }
           }
@@ -73,13 +81,28 @@ return new Promise(function(res, err) {
                         {
                           console.log("YAAAAAAAAAAY");
                           updateDriverRequestTable(userMessage[2], userMessage[4], userMessage[6], message.From);
-                          res("ok");
+                          //res("ok");
+                          let text = "We're processing your request!"
+                          trans(text, {to: 'hi'}).then(res => {
+                              console.log(res.text);
+                              //=> I speak English
+                              console.log(res.from.language.iso);
+                              result = res.from.language.iso;
+                              //=> nl
+                              res(result);
+                          }).catch(err => {
+                              console.error(err);
+                          });
                           return true;
                         }
                       }
 
                    });
-                   res("1111gibberish");
+                   res("I can't quite get that. Are you reistered yet? " +
+                       "Register as a passenger by texting: " +
+                       "Register passenger, your name. " +
+                       "Register as a driver by texting: " +
+                       "Register driver, your name, vehicle type, number of seats available.";);
                 });
                       //console.log(userPresentInRiderDb);
                       console.log(userMessage);
