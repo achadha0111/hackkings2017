@@ -89,6 +89,7 @@ return new Promise(function(res, err) {
                                 updateRiderRequestTable(userMessage[2], userMessage[4], userMessage[6], Body.from);
                                 res("ok");
                           }
+                          else
                           res(textToTranslate);
 
                   });
